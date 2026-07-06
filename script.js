@@ -17,8 +17,18 @@ function openGate() {
     }, 1500);
 }
 
-// Configuração da Contagem Regressiva (Data da festa: 21 Setembro 2026 às 19:00)
-const targetDate = new Date("September 21, 2026 19:00:00").getTime();
+// FUNÇÃO PARA ABRIR/FECHAR A LISTA DE PRESENTES SUAVEMENTE
+function toggleModal(show) {
+    const modal = document.getElementById('gift-modal');
+    if (show) {
+        modal.classList.add('active');
+    } else {
+        modal.classList.remove('active');
+    }
+}
+
+// Configuração da Contagem Regressiva (Data da festa: 21 Setembro 2026 às 20:00)
+const targetDate = new Date("September 21, 2026 20:00:00").getTime();
 
 const countdownInterval = setInterval(function() {
     const now = new Date().getTime();
