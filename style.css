@@ -11,7 +11,7 @@ body {
     overflow-x: hidden;
 }
 
-/* TELA DE ENTRADA - PORTAS DE GELO */
+/* TELA DE ENTRADA - COM NOVO EFEITO DE DESAPARECIMENTO SUAVE */
 .gate-container {
     position: fixed;
     inset: 0;
@@ -19,7 +19,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 1.5s ease-in-out, visibility 1.5s; /* Transição muito mais suave ao sumir */
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
+}
+
+/* Efeito quando o botão for clicado: esmaece a tela inteira além de abrir as portas */
+.gate-container.open {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .gate-left, .gate-right {
@@ -30,14 +37,12 @@ body {
     background: linear-gradient(rgba(130, 190, 255, 0.35), rgba(11, 27, 54, 0.9)), 
                 url('https://images.unsplash.com/photo-1485594050903-8e8ee7b071a8?q=80&w=1000') center center / cover;
     box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.4);
-    /* Transição ultra suave e desacelerada (ease-in-out) para a abertura das portas */
     transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 .gate-left { left: 0; border-right: 2px solid rgba(224, 242, 254, 0.6); }
 .gate-right { right: 0; border-left: 2px solid rgba(224, 242, 254, 0.6); }
 
-/* Quando o botão é clicado, as portas deslizam suavemente */
 .gate-container.open .gate-left { transform: translateX(-100%); }
 .gate-container.open .gate-right { transform: translateX(100%); }
 
@@ -45,10 +50,15 @@ body {
     position: relative;
     z-index: 10;
     text-align: center;
-    transition: opacity 1s ease-in-out;
+    transition: transform 1.2s ease-in-out, opacity 1s ease-in-out;
 }
 
-.gate-container.open .gate-content { opacity: 0; pointer-events: none; }
+/* O texto sobe de leve enquanto some */
+.gate-container.open .gate-content { 
+    transform: translateY(-20px);
+    opacity: 0; 
+}
+
 .gate-title { font-family: 'Cinzel', serif; font-size: 5rem; color: #e0f2fe; margin: 10px 0 30px 0; text-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
 .gate-subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #bae6fd; }
 
@@ -122,17 +132,8 @@ h1 { font-family: 'Cinzel', serif; font-size: 2.6rem; margin: 10px 0; color: #e0
     margin: 25px 0;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
 }
-.dress-code.gold-theme h3 {
-    color: #f4cf65;
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-}
-.dress-code.gold-theme p {
-    color: #fef08a;
-    font-size: 0.92rem;
-    line-height: 1.6;
-}
+.dress-code.gold-theme h3 { color: #f4cf65; font-family: 'Cinzel', serif; font-weight: 600; text-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+.dress-code.gold-theme p { color: #fef08a; font-size: 0.92rem; line-height: 1.6; }
 
 h3 { margin-top: 0; color: #93c5fd; font-size: 1rem; letter-spacing: 1px; }
 
@@ -146,14 +147,14 @@ h3 { margin-top: 0; color: #93c5fd; font-size: 1rem; letter-spacing: 1px; }
 .btn-confirm { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; width: 100%; font-size: 1rem; padding: 15px; box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4); }
 .btn:active { transform: scale(0.98); }
 
-/* FLOCOS DE NEVE TELA INICIAL E PRINCIPAL (Mudança de z-index para 10000) */
+/* FLOCOS DE NEVE */
 .snow-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10000; /* Agora fica por cima da tela de entrada também! */
+    z-index: 10000;
     pointer-events: none;
     overflow: hidden;
 }
@@ -183,18 +184,8 @@ h3 { margin-top: 0; color: #93c5fd; font-size: 1rem; letter-spacing: 1px; }
 .snowflake:nth-child(12) { left: 95%; animation-duration: 7s; animation-delay: 1s; }
 
 @keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.8;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
 }
