@@ -1,7 +1,15 @@
-// Função para abrir as portas de gelo
+// Função para abrir as portas de gelo e dar play na música
 function openGate() {
     const gate = document.getElementById('ice-gate');
     gate.classList.add('open');
+    
+    // Inicia a música de fundo
+    const music = document.getElementById('background-music');
+    if(music) {
+        music.play().catch(error => {
+            console.log("O navegador bloqueou a reprodução automática de áudio:", error);
+        });
+    }
     
     // Remove completamente a tela da frente após a animação acabar
     setTimeout(() => {
@@ -34,3 +42,4 @@ const countdownInterval = setInterval(function() {
         document.querySelector(".countdown-container").innerHTML = "<h3>É Hoje! ❄️</h3>";
     }
 }, 1000);
+
