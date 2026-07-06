@@ -60,7 +60,7 @@ body {
 .gate-title { font-family: 'Cinzel', serif; font-size: 5rem; color: #e0f2fe; margin: 10px 0 30px 0; text-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
 .gate-subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #bae6fd; }
 
-/* BOTÕES GERAIS DO SITE */
+/* BOTÕES GERAIS */
 .btn {
     padding: 15px 35px;
     font-weight: 600;
@@ -74,52 +74,74 @@ body {
     transition: all 0.3s ease;
 }
 
-/* NOVO BOTÃO INICIAL LUXUOSO E ULTRA ELEGANTE */
+/* BOTÃO INICIAL DOURADO LUXO */
 .btn-open {
     padding: 16px 45px;
     font-weight: 600;
     font-size: 1.05rem;
-    font-family: 'Cinzel', serif; /* Fonte clássica e elegante */
+    font-family: 'Cinzel', serif;
     letter-spacing: 2px;
     border-radius: 50px;
     cursor: pointer;
     text-transform: uppercase;
-    
-    /* Efeito Vidro Luxo */
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    
-    /* Borda Dourada Suave */
     border: 1px solid rgba(212, 175, 55, 0.5);
-    color: #f4cf65; /* Texto dourado */
-    
+    color: #f4cf65;
     transition: all 0.4s ease;
-    /* Pulsação com brilho dourado e branco */
     animation: goldPulseGlow 2.5s infinite; 
 }
 
-/* Animação de pulsação dourada de alta classe */
 @keyframes goldPulseGlow {
-    0% { 
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
-        border-color: rgba(212, 175, 55, 0.5);
-    }
-    50% {
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-    70% { 
-        box-shadow: 0 0 0 20px rgba(212, 175, 55, 0), inset 0 0 15px rgba(255, 255, 255, 0.2);
-        border-color: rgba(212, 175, 55, 0.5);
-    }
-    100% { 
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), inset 0 0 10px rgba(255, 255, 255, 0.1);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1); border-color: rgba(212, 175, 55, 0.5); }
+    50% { border-color: rgba(255, 255, 255, 0.8); }
+    70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0), inset 0 0 15px rgba(255, 255, 255, 0.2); border-color: rgba(212, 175, 55, 0.5); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), inset 0 0 10px rgba(255, 255, 255, 0.1); }
 }
 
-.btn-open:active {
-    transform: scale(0.95);
-    background: rgba(212, 175, 55, 0.2);
+.btn-open:active { transform: scale(0.95); background: rgba(212, 175, 55, 0.2); }
+
+/* NOVO BOTÃO DE CONFIRMAÇÃO: ESTILO VIDRO PRATA/BRANCO (SEM DOURADO) */
+.btn-confirm-glass {
+    padding: 16px 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    
+    transition: all 0.4s ease;
+    animation: silverPulseGlow 2.5s infinite;
+    box-sizing: border-box;
+}
+
+@keyframes silverPulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.4); }
+    50% { border-color: rgba(147, 197, 253, 0.8); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0), inset 0 0 15px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), inset 0 0 10px rgba(255, 255, 255, 0.1); }
+}
+
+.btn-confirm-glass:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.25); }
+
+/* RODAPÉ CENTRALIZADO */
+.footer-centered {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 /* CARD PRINCIPAL EM VIDRO FOSCO */
@@ -142,7 +164,6 @@ body {
 
 h1 { font-family: 'Cinzel', serif; font-size: 2.6rem; margin: 10px 0; color: #e0f2fe; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
 .subtitle { font-size: 0.8rem; letter-spacing: 4px; color: #93c5fd; }
-.tagline { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #cbd5e1; margin-bottom: 15px; }
 .quote { font-style: italic; font-size: 0.9rem; color: #e2e8f0; padding: 0 10px; line-height: 1.5; }
 .divider { font-size: 1.2rem; color: #93c5fd; margin: 15px 0; }
 .age { font-family: 'Cinzel', serif; font-size: 2.2rem; margin: 15px 0; color: #fff; }
@@ -177,7 +198,6 @@ h3 { margin-top: 0; color: #93c5fd; font-size: 1rem; letter-spacing: 1px; }
 
 /* BOTÕES DO CONTEÚDO */
 .btn-maps, .btn-gifts { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 0.85rem; padding: 10px 20px; margin-top: 10px; width: 80%; }
-.btn-confirm { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; width: 100%; font-size: 1rem; padding: 15px; box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4); }
 
 /* FLOCOS DE NEVE */
 .snow-container {
