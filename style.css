@@ -1,9 +1,8 @@
-/* Configurações Gerais */
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Fundo azul escuro luxuoso para destacar a neve */
+    background: linear-gradient(135deg, #0b192c, #1e3a8a, #3b82f6);
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
@@ -12,160 +11,134 @@ body {
     overflow-x: hidden;
 }
 
-/* Efeito de Vidro Fosco (Glassmorphism) igual ao exemplo */
-.card {
-    max-width: 450px;
-    width: 90%;
-    margin: 20px;
-    padding: 40px 30px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-}
-
-/* Tipografia e Textos */
-h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
-    margin: 10px 0 0 0;
-    color: #e0f2fe;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
-    font-weight: 600;
-}
-
-.subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: #93c5fd;
-    margin: 0;
-}
-
-.tagline {
-    font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    color: #cbd5e1;
-    margin: 5px 0 20px 0;
-    letter-spacing: 2px;
-}
-
-.divider {
-    font-size: 1.2rem;
-    color: #93c5fd;
-    margin: 15px 0;
-}
-
-.party-text {
-    font-size: 0.95rem;
-    color: #e2e8f0;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-.age {
-    font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
-    color: #ffffff;
-    margin: 20px 0;
-    font-weight: 600;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 0;
-}
-
-.info-block {
-    margin: 25px 0;
-}
-
-.date {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #93c5fd;
-    margin: 0 0 5px 0;
-}
-
-.time {
-    font-size: 1.1rem;
-    color: #ffffff;
-    margin: 0;
-}
-
-.location h3 {
-    font-size: 0.9rem;
-    color: #93c5fd;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 5px;
-}
-
-.location p {
-    font-size: 0.95rem;
-    margin: 4px 0;
-    color: #e2e8f0;
-}
-
-/* Botões Modernos e Elegantes */
-footer {
-    margin-top: 35px;
+/* TELA DE ENTRADA - PORTAS DE GELO */
+.gate-container {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    transition: visibility 1.2s;
 }
 
-.btn {
-    display: block;
-    padding: 14px 20px;
-    border-radius: 50px;
-    text-decoration: none;
+.gate-left, .gate-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: linear-gradient(rgba(147, 197, 253, 0.4), rgba(30, 58, 138, 0.85)), 
+                url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=1000') center center / cover;
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.3);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.gate-left { left: 0; border-right: 2px solid rgba(255, 255, 255, 0.5); }
+.gate-right { right: 0; border-left: 2px solid rgba(255, 255, 255, 0.5); }
+
+/* Quando abrir, as portas deslizam para os lados */
+.gate-container.open .gate-left { transform: translateX(-100%); }
+.gate-container.open .gate-right { transform: translateX(100%); }
+
+.gate-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    transition: opacity 0.8s ease;
+}
+
+.gate-container.open .gate-content { opacity: 0; pointer-events: none; }
+
+.gate-title {
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    color: #e0f2fe;
+    margin: 10px 0 30px 0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.gate-subtitle { letter-spacing: 6px; font-size: 0.9rem; color: #93c5fd; }
+
+/* BOTÕES COM BRILHO */
+.btn-open, .btn {
+    padding: 15px 35px;
     font-weight: 600;
-    font-size: 0.9rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
     transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-open {
+    background: #ffffff;
+    color: #1e3a8a;
+    font-size: 1.1rem;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* PÁGINA PRINCIPAL E EFEITO VIDRO FOSCO */
+.card {
+    max-width: 480px;
+    width: 90%;
+    margin: 40px 20px;
+    padding: 40px 25px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
 }
 
-.btn-confirm {
-    background: #ffffff;
-    color: #1e293b;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+h1 { font-family: 'Cinzel', serif; font-size: 2.6rem; margin: 10px 0; color: #e0f2fe; }
+.subtitle { font-size: 0.8rem; letter-spacing: 4px; color: #93c5fd; }
+.tagline { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #cbd5e1; margin-bottom: 15px; }
+.quote { font-style: italic; font-size: 0.9rem; color: #cbd5e1; padding: 0 10px; line-height: 1.5; }
+.divider { font-size: 1.2rem; color: #93c5fd; margin: 15px 0; }
+.age { font-family: 'Cinzel', serif; font-size: 2.2rem; margin: 15px 0; }
+
+/* SEÇÕES INTERNAS */
+.countdown-container, .location-box, .dress-code, .gifts {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 25px 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.btn-confirm:active {
-    transform: scale(0.98);
-    background: #f1f5f9;
-}
+h3 { margin-top: 0; color: #93c5fd; font-size: 1rem; letter-spacing: 1px; }
 
-.btn-maps {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
+/* CONTAGEM REGRESSIVA */
+.countdown { display: flex; justify-content: space-around; margin-top: 15px; }
+.time-box span { font-size: 1.6rem; font-weight: 600; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.time-box p { margin: 2px 0 0 0; font-size: 0.75rem; color: #93c5fd; }
 
-.btn-maps:active {
-    background: rgba(255, 255, 255, 0.1);
-}
+/* BOTÕES DAS SEÇÕES */
+.btn-maps, .btn-gifts { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 0.85rem; padding: 10px 20px; margin-top: 10px; width: 80%; }
+.btn-confirm { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; width: 100%; font-size: 1rem; padding: 15px; box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4); }
+.btn:active { transform: scale(0.98); }
 
-/* Animação União de Neve */
+/* ANIMAÇÃO DE NEVE */
 .snow {
     position: fixed;
     inset: 0;
-    background-image: 
-        radial-gradient(#fff 2px, transparent 2px),
-        radial-gradient(#fff 1.5px, transparent 1.5px);
+    background-image: radial-gradient(#fff 2px, transparent 2px), radial-gradient(#fff 1.5px, transparent 1.5px);
     background-size: 40px 40px, 60px 60px;
-    background-position: 0 0, 20px 20px;
     animation: f 12s linear infinite;
-    z-index: 0;
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.6;
 }
-
-@keyframes f {
-    to {
-        background-position: 40px 400px, 20px 400px;
-    }
-}
+@keyframes f { to { background-position: 40px 400px, 20px 400px; } }
